@@ -1,25 +1,44 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Numerics;
 using System;
-Console.WriteLine("Hello, World!");
 
 
 
-public partial class Program{
-    static float THRESHOLD = 0.3F;
-    static float bias = 0.0F;
+internal class Program{
+    const float THRESHOLD = 0.3F;
+    const float bias = 0.1F;
+    const int domande = 5;
 
     public static void Main(string[] args){
         Console.WriteLine("start");
+        Console.WriteLine("Premi a o p");
+        string scelta = Console.ReadLine();
+        int[] input;
+        if(scelta == "p")
+        {
+            input = new int[domande];
+            Console.WriteLine("artista famoso? 1= Si 0 = no");
+            input[0]=int.Parse(Console.ReadLine()!)!;
+            Console.WriteLine("bel meteo? 1= Si 0 = no");
+            input[1]=int.Parse(Console.ReadLine()!)!;
+            Console.WriteLine("amici presenti? 1= Si 0 = no");
+            input[2]=int.Parse(Console.ReadLine()!)!;
+            Console.WriteLine("cibo buono? 1= Si 0 = no");
+            input[3]=int.Parse(Console.ReadLine()!)!;
+            Console.WriteLine("si puo bere? 1= Si 0 = no");
+            input[4]=int.Parse(Console.ReadLine()!)!;
+        }
+        else
+        {
+            input = LeggiInput(3); 
+        }
         float[] weights = LeggiPesi();
-        int bias = 4;
-        int[] input = LeggiInput(3);
         int decisione = prevedi(weights, bias, input);
-        Console.WriteLine(decisione);
+        Console.WriteLine("Dovresti farlo? --> " + decisione.ToString());
     }
     public static float[] LeggiPesi()
     {
-        return [0.5F,0.1F,0.7F];
+        return [0.3F,0.1F,0.2F,0.1F,0.1F];
     }
     public static int[] LeggiInput(int lenght){
         int[] input = new int[3];
